@@ -1,0 +1,5 @@
+(executable
+ (public_name oci_web)
+ (name main)
+ (libraries current.fs current_docker current_git current_web cmdliner
+   logs.fmt fmt.tty))

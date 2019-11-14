@@ -1,0 +1,7 @@
+_build/
+_opam/
+var/
+
+*.install
+*.merlin
+\.\#*
