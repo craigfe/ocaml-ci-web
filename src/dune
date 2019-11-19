@@ -1,5 +1,5 @@
 (executable
- (public_name oci_web)
+ (public_name ocaml_ci_web)
  (name main)
  (libraries current.fs current_docker current_git current_web cmdliner
    logs.fmt fmt.tty))

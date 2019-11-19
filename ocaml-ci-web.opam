@@ -4,8 +4,8 @@ synopsis: "CI for web projects using OCurrent"
 maintainer: ["Craig Ferguson"]
 authors: ["Craig Ferguson"]
 license: "ISC"
-homepage: "https://github.com/craigfe/oci-web"
-bug-reports: "https://github.com/craigfe/oci-web/issues"
+homepage: "https://github.com/craigfe/ocaml-ci-web"
+bug-reports: "https://github.com/craigfe/ocaml-ci-web/issues"
 depends: [
   "dune" {>= "1.11"}
   "current"
@@ -29,4 +29,4 @@ build: [
     "@doc" {with-doc}
   ]
 ]
-dev-repo: "git+https://github.com/craigfe/oci-web.git"
+dev-repo: "git+https://github.com/craigfe/ocaml-ci-web.git"
