@@ -27,8 +27,20 @@ let lint base =
   Docker.run ~label:"lint" base ~args:[ "yarn"; "run"; "lint" ]
   |> Current.ignore_value
 
-let v ~repo () =
-  let src = Git.Local.head_commit repo in
+let v_of_src src =
   let node_base = Docker.pull ~schedule:weekly "node:alpine" in
   let img = project node_base src in
   Current.all [ lint img; build img ]
+
+let v_of_repo repo () = Git.Local.head_commit repo |> v_of_src
+
+let v_of_app app () =
+  let open Current_github in
+  let it = Current.list_iter in
+  App.installations app
+  |> it ~pp:Installation.pp @@ fun installation ->
+     Installation.repositories installation
+     |> it ~pp:Api.Repo.pp @@ fun repo ->
+        Api.Repo.ci_refs repo
+        |> it ~pp:Api.Commit.pp @@ fun head ->
+           Git.fetch (Current.map Api.Commit.id head) |> v_of_src
